@@ -22,8 +22,8 @@ Aplicación de escritorio hecha en **Java + JavaFX + SQLite** para registrar nad
 
 ## Usuario inicial
 
-- **Usuario:** `admin`
-- **Contraseña:** `admin123`
+- **Usuario:** ``
+- **Contraseña:** ``
 
 ## Cómo ejecutar en IntelliJ IDEA
 
