@@ -1,0 +1,69 @@
+.root-pane {
+    -fx-background-color: #f4f7fb;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.top-bar {
+    -fx-background-color: linear-gradient(to right, #0d47a1, #1565c0);
+}
+
+.header-title {
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.logged-user-label {
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+}
+
+.page-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+}
+
+.section-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #12355b;
+}
+
+.section-title-small {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #12355b;
+}
+
+.info-label {
+    -fx-text-fill: #0d47a1;
+    -fx-font-size: 13px;
+}
+
+.helper-text {
+    -fx-text-fill: #546e7a;
+    -fx-font-style: italic;
+}
+
+.primary-button {
+    -fx-background-color: #1976d2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.primary-button:hover {
+    -fx-background-color: #1565c0;
+}
+
+.button {
+    -fx-cursor: hand;
+}
+
+.table-view, .text-field, .password-field, .combo-box, .date-picker, .text-area {
+    -fx-background-radius: 6px;
+}
+
+.label {
+    -fx-text-fill: #1a2a3a;
+}

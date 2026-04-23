@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.progresionnacion.controller.MainController"
+            styleClass="root-pane">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" styleClass="top-bar">
+            <padding>
+                <Insets top="12" right="18" bottom="12" left="18"/>
+            </padding>
+
+            <Label text="Progresión de marcas en natación" styleClass="header-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="loggedUserLabel" styleClass="logged-user-label"/>
+            <Button text="Cerrar sesión" onAction="#onLogout"/>
+        </HBox>
+    </top>
+
+    <center>
+        <TabPane tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Nadadores">
+                    <content>
+                        <BorderPane>
+                            <top>
+                                <VBox spacing="10">
+                                    <padding>
+                                        <Insets top="12" right="12" bottom="12" left="12"/>
+                                    </padding>
+
+                                    <Label text="Gestión de nadadores" styleClass="section-title"/>
+
+                                    <GridPane hgap="10" vgap="10">
+                                        <columnConstraints>
+                                            <ColumnConstraints percentWidth="25"/>
+                                            <ColumnConstraints percentWidth="20"/>
+                                            <ColumnConstraints percentWidth="20"/>
+                                            <ColumnConstraints percentWidth="35"/>
+                                        </columnConstraints>
+
+                                        <TextField fx:id="swimmerSearchField" promptText="Buscar por nombre, apellido o club"
+                                                   GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                        <ComboBox fx:id="swimmerFilterSexCombo" promptText="Sexo"
+                                                  GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                        <ComboBox fx:id="swimmerFilterCategoryCombo" promptText="Categoría"
+                                                  GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+
+                                        <HBox spacing="10" GridPane.rowIndex="0" GridPane.columnIndex="3">
+                                            <Button text="Buscar" onAction="#onSearchSwimmers" styleClass="primary-button"/>
+                                            <Button text="Limpiar filtros" onAction="#onClearSwimmerFilters"/>
+                                            <Button text="Nuevo" onAction="#onNewSwimmer"/>
+                                        </HBox>
+                                    </GridPane>
+                                </VBox>
+                            </top>
+
+                            <center>
+                                <SplitPane dividerPositions="0.58">
+                                    <items>
+                                        <VBox spacing="10">
+                                            <padding>
+                                                <Insets top="0" right="12" bottom="12" left="12"/>
+                                            </padding>
+
+                                            <TableView fx:id="swimmerTable" VBox.vgrow="ALWAYS">
+                                                <columns>
+                                                    <TableColumn fx:id="swimmerIdColumn" text="ID" prefWidth="60"/>
+                                                    <TableColumn fx:id="swimmerNameColumn" text="Nombre completo" prefWidth="220"/>
+                                                    <TableColumn fx:id="swimmerSexColumn" text="Sexo" prefWidth="100"/>
+                                                    <TableColumn fx:id="swimmerCategoryColumn" text="Categoría" prefWidth="110"/>
+                                                    <TableColumn fx:id="swimmerBirthDateColumn" text="Nacimiento" prefWidth="120"/>
+                                                    <TableColumn fx:id="swimmerClubColumn" text="Club" prefWidth="140"/>
+                                                </columns>
+                                            </TableView>
+                                        </VBox>
+
+                                        <VBox spacing="12">
+                                            <padding>
+                                                <Insets top="0" right="12" bottom="12" left="0"/>
+                                            </padding>
+
+                                            <Label fx:id="swimmerFormLabel" text="Nuevo nadador" styleClass="section-title-small"/>
+
+                                            <GridPane hgap="10" vgap="10">
+                                                <columnConstraints>
+                                                    <ColumnConstraints minWidth="130" prefWidth="140"/>
+                                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                                </columnConstraints>
+
+                                                <Label text="Nombre:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                                <TextField fx:id="swimmerFirstNameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                                                <Label text="Apellidos:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                                <TextField fx:id="swimmerLastNameField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                                                <Label text="Fecha nacimiento:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                                                <DatePicker fx:id="swimmerBirthDatePicker" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                                                <Label text="Sexo:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                                                <ComboBox fx:id="swimmerSexCombo" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                                                <Label text="Categoría:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                                                <ComboBox fx:id="swimmerCategoryCombo" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                                                <Label text="Club:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                                                <TextField fx:id="swimmerClubField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+                                                <Label text="Notas:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                                                <TextArea fx:id="swimmerNotesArea" prefRowCount="5" wrapText="true"
+                                                          GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+                                            </GridPane>
+
+                                            <HBox spacing="10">
+                                                <Button text="Guardar" onAction="#onSaveSwimmer" styleClass="primary-button"/>
+                                                <Button text="Eliminar" onAction="#onDeleteSwimmer"/>
+                                                <Button text="Limpiar formulario" onAction="#onNewSwimmer"/>
+                                            </HBox>
+                                        </VBox>
+                                    </items>
+                                </SplitPane>
+                            </center>
+                        </BorderPane>
+                    </content>
+                </Tab>
+
+                <Tab text="Marcas y entrenamientos">
+                    <content>
+                        <BorderPane>
+                            <top>
+                                <VBox spacing="10">
+                                    <padding>
+                                        <Insets top="12" right="12" bottom="12" left="12"/>
+                                    </padding>
+
+                                    <Label text="Registros de marcas" styleClass="section-title"/>
+
+                                    <GridPane hgap="10" vgap="10">
+                                        <columnConstraints>
+                                            <ColumnConstraints percentWidth="17"/>
+                                            <ColumnConstraints percentWidth="15"/>
+                                            <ColumnConstraints percentWidth="12"/>
+                                            <ColumnConstraints percentWidth="12"/>
+                                            <ColumnConstraints percentWidth="12"/>
+                                            <ColumnConstraints percentWidth="12"/>
+                                            <ColumnConstraints percentWidth="10"/>
+                                            <ColumnConstraints percentWidth="10"/>
+                                        </columnConstraints>
+
+                                        <TextField fx:id="recordSearchField" promptText="Buscar texto"
+                                                   GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                        <ComboBox fx:id="recordFilterSwimmerCombo" promptText="Nadador"
+                                                  GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                        <ComboBox fx:id="recordFilterSexCombo" promptText="Sexo"
+                                                  GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                        <ComboBox fx:id="recordFilterCategoryCombo" promptText="Categoría"
+                                                  GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                                        <ComboBox fx:id="recordFilterStrokeCombo" promptText="Estilo"
+                                                  GridPane.rowIndex="0" GridPane.columnIndex="4"/>
+                                        <ComboBox fx:id="recordFilterTypeCombo" promptText="Tipo"
+                                                  GridPane.rowIndex="0" GridPane.columnIndex="5"/>
+                                        <DatePicker fx:id="recordDateFromPicker" promptText="Desde"
+                                                    GridPane.rowIndex="0" GridPane.columnIndex="6"/>
+                                        <DatePicker fx:id="recordDateToPicker" promptText="Hasta"
+                                                    GridPane.rowIndex="0" GridPane.columnIndex="7"/>
+
+                                        <HBox spacing="10" GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.columnSpan="8">
+                                            <Button text="Aplicar filtros" onAction="#onSearchRecords" styleClass="primary-button"/>
+                                            <Button text="Limpiar filtros" onAction="#onClearRecordFilters"/>
+                                            <Button text="Nuevo registro" onAction="#onNewRecord"/>
+                                        </HBox>
+                                    </GridPane>
+                                </VBox>
+                            </top>
+
+                            <center>
+                                <SplitPane orientation="VERTICAL" dividerPositions="0.58">
+                                    <items>
+                                        <VBox spacing="10">
+                                            <padding>
+                                                <Insets top="0" right="12" bottom="12" left="12"/>
+                                            </padding>
+
+                                            <TableView fx:id="recordTable" VBox.vgrow="ALWAYS">
+                                                <columns>
+                                                    <TableColumn fx:id="recordDateColumn" text="Fecha" prefWidth="100"/>
+                                                    <TableColumn fx:id="recordSwimmerColumn" text="Nadador" prefWidth="160"/>
+                                                    <TableColumn fx:id="recordStrokeColumn" text="Estilo" prefWidth="90"/>
+                                                    <TableColumn fx:id="recordTypeColumn" text="Tipo" prefWidth="110"/>
+                                                    <TableColumn fx:id="recordTimeColumn" text="Tiempo" prefWidth="100"/>
+                                                    <TableColumn fx:id="recordLocationColumn" text="Lugar" prefWidth="140"/>
+                                                    <TableColumn fx:id="recordCoachColumn" text="Entrenador" prefWidth="150"/>
+                                                    <TableColumn fx:id="recordCommentColumn" text="Comentario" prefWidth="280"/>
+                                                </columns>
+                                            </TableView>
+                                        </VBox>
+
+                                        <VBox spacing="12">
+                                            <padding>
+                                                <Insets top="0" right="12" bottom="12" left="12"/>
+                                            </padding>
+
+                                            <Label fx:id="recordFormLabel" text="Nuevo registro" styleClass="section-title-small"/>
+
+                                            <GridPane hgap="10" vgap="10">
+                                                <columnConstraints>
+                                                    <ColumnConstraints minWidth="150" prefWidth="160"/>
+                                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                                    <ColumnConstraints minWidth="150" prefWidth="160"/>
+                                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                                </columnConstraints>
+
+                                                <Label text="Nadador:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                                <ComboBox fx:id="recordSwimmerCombo" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                                                <Label text="Fecha:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                                <DatePicker fx:id="recordDatePicker" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                                                <Label text="Estilo:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                                <ComboBox fx:id="recordStrokeCombo" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                                                <Label text="Tipo de sesión:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                                                <ComboBox fx:id="recordTypeCombo" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+                                                <Label text="Tiempo:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                                                <TextField fx:id="recordTimeField" promptText="Ej: 01:08.45 o 68.45"
+                                                           GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                                                <Label text="Lugar:" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+                                                <TextField fx:id="recordLocationField" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+
+                                                <Label text="Entrenador:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                                                <TextField fx:id="recordCoachField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                                                <Label text="Comentario:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                                                <TextArea fx:id="recordCommentArea" prefRowCount="4" wrapText="true"
+                                                          GridPane.rowIndex="4" GridPane.columnIndex="1"
+                                                          GridPane.columnSpan="3"/>
+                                            </GridPane>
+
+                                            <HBox spacing="10">
+                                                <Button text="Guardar registro" onAction="#onSaveRecord" styleClass="primary-button"/>
+                                                <Button text="Eliminar registro" onAction="#onDeleteRecord"/>
+                                                <Button text="Limpiar formulario" onAction="#onNewRecord"/>
+                                            </HBox>
+                                        </VBox>
+                                    </items>
+                                </SplitPane>
+                            </center>
+                        </BorderPane>
+                    </content>
+                </Tab>
+
+
+                <Tab fx:id="usersTab" text="Usuarios">
+                    <content>
+                        <BorderPane>
+                            <top>
+                                <VBox spacing="10">
+                                    <padding>
+                                        <Insets top="12" right="12" bottom="12" left="12"/>
+                                    </padding>
+
+                                    <Label text="Gestión de usuarios" styleClass="section-title"/>
+                                    <Label text="Esta pestaña sirve para crear y borrar usuarios de la aplicación. Para borrar el usuario de ejemplo, primero crea otro administrador, entra con él y luego elimina 'admin'."
+                                           styleClass="helper-text" wrapText="true"/>
+                                </VBox>
+                            </top>
+
+                            <center>
+                                <SplitPane dividerPositions="0.55">
+                                    <items>
+                                        <VBox spacing="10">
+                                            <padding>
+                                                <Insets top="0" right="12" bottom="12" left="12"/>
+                                            </padding>
+
+                                            <TableView fx:id="userTable" VBox.vgrow="ALWAYS">
+                                                <columns>
+                                                    <TableColumn fx:id="userIdColumn" text="ID" prefWidth="70"/>
+                                                    <TableColumn fx:id="userUsernameColumn" text="Usuario" prefWidth="180"/>
+                                                    <TableColumn fx:id="userFullNameColumn" text="Nombre completo" prefWidth="250"/>
+                                                    <TableColumn fx:id="userRoleColumn" text="Rol" prefWidth="140"/>
+                                                </columns>
+                                            </TableView>
+                                        </VBox>
+
+                                        <VBox spacing="12">
+                                            <padding>
+                                                <Insets top="0" right="12" bottom="12" left="0"/>
+                                            </padding>
+
+                                            <Label fx:id="userFormLabel" text="Nuevo usuario" styleClass="section-title-small"/>
+
+                                            <GridPane hgap="10" vgap="10">
+                                                <columnConstraints>
+                                                    <ColumnConstraints minWidth="150" prefWidth="160"/>
+                                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                                </columnConstraints>
+
+                                                <Label text="Usuario:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                                <TextField fx:id="userUsernameField" promptText="Ej: entrenador1"
+                                                           GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                                                <Label text="Nombre completo:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                                <TextField fx:id="userFullNameField" promptText="Nombre y apellidos"
+                                                           GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                                                <Label text="Rol:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                                                <ComboBox fx:id="userRoleCombo" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                                                <Label text="Contraseña:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                                                <PasswordField fx:id="userPasswordField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                                                <Label text="Repetir contraseña:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                                                <PasswordField fx:id="userConfirmPasswordField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                                                <Label text="La contraseña se guarda cifrada y no se muestra después." styleClass="helper-text"
+                                                       wrapText="true" GridPane.rowIndex="5" GridPane.columnIndex="0" GridPane.columnSpan="2"/>
+                                            </GridPane>
+
+                                            <HBox spacing="10">
+                                                <Button text="Crear usuario" onAction="#onSaveUser" styleClass="primary-button"/>
+                                                <Button text="Eliminar seleccionado" onAction="#onDeleteUser"/>
+                                                <Button text="Limpiar formulario" onAction="#onNewUser"/>
+                                            </HBox>
+                                        </VBox>
+                                    </items>
+                                </SplitPane>
+                            </center>
+                        </BorderPane>
+                    </content>
+                </Tab>
+
+
+                <Tab text="Estadísticas">
+                    <content>
+                        <BorderPane>
+                            <top>
+                                <VBox spacing="12">
+                                    <padding>
+                                        <Insets top="12" right="12" bottom="12" left="12"/>
+                                    </padding>
+
+                                    <Label text="Seguimiento de progresión" styleClass="section-title"/>
+
+                                    <GridPane hgap="10" vgap="10">
+                                        <columnConstraints>
+                                            <ColumnConstraints minWidth="120"/>
+                                            <ColumnConstraints percentWidth="30"/>
+                                            <ColumnConstraints minWidth="100"/>
+                                            <ColumnConstraints percentWidth="20"/>
+                                            <ColumnConstraints percentWidth="30"/>
+                                        </columnConstraints>
+
+                                        <Label text="Nadador:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                        <ComboBox fx:id="statsSwimmerCombo" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                                        <Label text="Estilo:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                        <ComboBox fx:id="statsStrokeCombo" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                                        <Button text="Actualizar gráfico" onAction="#onRefreshChart" styleClass="primary-button"
+                                                GridPane.rowIndex="0" GridPane.columnIndex="4"/>
+                                    </GridPane>
+
+                                    <HBox spacing="20">
+                                        <Label fx:id="bestTimeLabel" text="Mejor marca: -"/>
+                                        <Label fx:id="averageTimeLabel" text="Promedio: -"/>
+                                        <Label fx:id="totalRecordsLabel" text="Registros: 0"/>
+                                    </HBox>
+
+                                    <Label text="Nota: el eje vertical del gráfico usa segundos para simplificar el dibujo del chart."
+                                           styleClass="helper-text" wrapText="true"/>
+                                </VBox>
+                            </top>
+
+                            <center>
+                                <VBox spacing="12">
+                                    <padding>
+                                        <Insets top="0" right="12" bottom="12" left="12"/>
+                                    </padding>
+
+                                    <LineChart fx:id="progressChart" createSymbols="true" animated="false" VBox.vgrow="ALWAYS">
+                                        <xAxis>
+                                            <CategoryAxis label="Fecha"/>
+                                        </xAxis>
+                                        <yAxis>
+                                            <NumberAxis label="Tiempo en segundos"/>
+                                        </yAxis>
+                                    </LineChart>
+                                </VBox>
+                            </center>
+                        </BorderPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>

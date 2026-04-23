@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.progresionnacion.controller.LoginController"
+            prefWidth="500" prefHeight="340" styleClass="root-pane">
+    <center>
+        <VBox spacing="16" alignment="CENTER" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="24" right="24" bottom="24" left="24"/>
+            </padding>
+
+            <Label text="PROGRESIÓN DE MARCAS EN NATACIÓN" styleClass="page-title" wrapText="true"/>
+
+            <GridPane hgap="12" vgap="12" maxWidth="360">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="120" prefWidth="130"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <Label text="Usuario:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="usernameField" promptText="Ejemplo: admin" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Contraseña:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <PasswordField fx:id="passwordField" promptText="Escribe tu contraseña" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <Label fx:id="infoLabel" styleClass="info-label" wrapText="true"/>
+
+            <HBox spacing="12" alignment="CENTER">
+                <Button text="Iniciar sesión" onAction="#onLogin" styleClass="primary-button"/>
+                <Button text="Salir" onAction="#onExit"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
