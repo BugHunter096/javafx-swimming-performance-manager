@@ -1,47 +1,40 @@
-# Progresión de marcas en natación
+# Swim Performance Tracker
 
-Aplicación de escritorio hecha en **Java + JavaFX + SQLite** para registrar nadadores, guardar marcas, filtrar resultados y visualizar la progresión del rendimiento.
+Desktop application built with **Java, JavaFX and SQLite** to register swimmers, store race times, filter results and visualize performance progress over time.
 
-## Qué hace la aplicación
+## Features
 
-- Login básico con usuario local.
-- CRUD de nadadores.
-- CRUD de registros de marcas.
-- Filtros por sexo, categoría, estilo, tipo de sesión, fechas y texto.
-- Comentarios del entrenador en cada registro.
-- Gráfico de progresión por nadador y estilo.
-- Base de datos SQLite local que se crea automáticamente.
+- Basic local login.
+- Swimmer CRUD.
+- Race time record CRUD.
+- Filters by gender, category, stroke, session type, date range and text.
+- Coach comments for each record.
+- Progress chart by swimmer and stroke.
+- Local SQLite database created automatically on startup.
 
-## Tecnologías usadas
+## Technologies
 
-- **Java 21**
-- **JavaFX** para la interfaz
-- **FXML** para separar vista y lógica
-- **SQLite** para base de datos local
-- **Maven** para dependencias y ejecución
+- Java 21
+- JavaFX for the user interface
+- FXML to separate views from logic
+- SQLite for local data storage
+- Maven for dependency management and execution
 
-## Usuario inicial
+## Default User
 
-- **Usuario:** `admin`
-- **Contraseña:** `admin123`
+Username: admin
+Password: admin123
 
-## Cómo ejecutar en IntelliJ IDEA
+## How to Run with IntelliJ IDEA
 
-1. Abre IntelliJ.
-2. Pulsa **Open** y selecciona la carpeta `proyecto-natacion`.
-3. Espera a que IntelliJ importe el `pom.xml` y descargue dependencias.
-4. Busca la clase `com.progresionnacion.Launcher`.
-5. Ejecuta esa clase.
+1. Open IntelliJ IDEA.
+2. Click Open and select the proyecto-natacion folder.
+3. Wait for IntelliJ to import the pom.xml file and download the dependencies.
+4. Find the class: com.progresionnacion.Launcher
+5. Run that class.
 
-## Cómo ejecutar por terminal
 
-Necesitas Maven instalado.
-
-```bash
-mvn clean javafx:run
-```
-
-## Estructura del proyecto
+## Project Structure
 
 ```text
 src/main/java/com/progresionnacion
@@ -68,28 +61,18 @@ src/main/java/com/progresionnacion
     └── TimeUtils.java
 ```
 
-## Base de datos
+## Database
 
-La aplicación crea automáticamente el archivo:
+The application automatically creates the following database file:
 
 ```text
 data/progresion_natacion.db
 ```
 
-También deja unos datos de ejemplo para poder probarla nada más arrancar.
+## Future Improvements
 
-## Cosas importantes para defender el proyecto
-
-- Separé la interfaz (`FXML`) de la lógica (`controllers`) para que el código fuese más limpio.
-- Elegí SQLite porque no necesita servidor.
-- Guardé los tiempos en **segundos** para facilitar cálculos, filtros y estadísticas.
-- Formateé esos segundos a `mm:ss.ss` en la interfaz para que el usuario vea una marca comprensible.
-- La seguridad se implementó de forma básica con hash SHA-256 para la contraseña del usuario inicial.
-
-## Mejoras futuras
-
-- Gestión completa de usuarios y roles.
-- Exportación a PDF o Excel.
-- Estadísticas más avanzadas.
-- Comparación directa entre varios nadadores.
-- Validaciones más estrictas y tests automáticos.
+- Complete user and role management.
+- Export data to PDF or Excel.
+- More advanced statistics.
+- Direct comparison between multiple swimmers.
+- Stricter validations and automated tests.
