@@ -76,3 +76,24 @@ data/progresion_natacion.db
 - More advanced statistics.
 - Direct comparison between multiple swimmers.
 - Stricter validations and automated tests.
+
+## Screenshots
+
+### Login
+
+
+### Swimmers Management
+
+![Swimmers table](assets/screenshots/swimmers-table.png)
+
+### Time Record Form
+
+![Time record form](assets/screenshots/time-record-form.png)
+
+### Performance Progress Chart
+
+![Performance progress chart](assets/screenshots/progress-chart.png)
+
+### Database Structure
+
+![Database structure](assets/screenshots/database-structure.png)
