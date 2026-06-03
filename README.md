@@ -81,19 +81,25 @@ data/progresion_natacion.db
 
 ### Login
 
+<img width="500" height="369" alt="Login" src="https://github.com/user-attachments/assets/5b6a315c-b3f7-4615-9f08-de2a2f341ddb" />
+
+
+### Main Dashboard
+
+<img width="1397" height="888" alt="Main Dashboard" src="https://github.com/user-attachments/assets/b0dff943-d5db-4cd6-a2ad-a5068eda8ada" />
+
 
 ### Swimmers Management
 
-![Swimmers table](assets/screenshots/swimmers-table.png)
+<img width="1398" height="888" alt="Swimmer Management" src="https://github.com/user-attachments/assets/7712e690-93c9-4e89-abce-2ed416d8f23b" />
 
-### Time Record Form
-
-![Time record form](assets/screenshots/time-record-form.png)
 
 ### Performance Progress Chart
 
-![Performance progress chart](assets/screenshots/progress-chart.png)
+<img width="1398" height="888" alt="Progress Chart" src="https://github.com/user-attachments/assets/d914c332-6cda-483a-a21f-9998e35f43a8" />
 
-### Database Structure
 
-![Database structure](assets/screenshots/database-structure.png)
+### Time Records
+
+<img width="1397" height="890" alt="Time Records" src="https://github.com/user-attachments/assets/f031d614-6aaf-46e0-a0c7-ec4c867fa7c2" />
+
