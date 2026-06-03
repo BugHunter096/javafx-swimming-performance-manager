@@ -99,7 +99,7 @@ data/progresion_natacion.db
 <img width="1398" height="888" alt="Progress Chart" src="https://github.com/user-attachments/assets/d914c332-6cda-483a-a21f-9998e35f43a8" />
 
 
-### Time Records
+### Users
 
 <img width="1397" height="890" alt="Time Records" src="https://github.com/user-attachments/assets/f031d614-6aaf-46e0-a0c7-ec4c867fa7c2" />
 
